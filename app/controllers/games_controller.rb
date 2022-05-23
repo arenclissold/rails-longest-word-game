@@ -8,16 +8,16 @@ class GamesController < ApplicationController
 
   def score
     cookies[:total_score] = 0 unless cookies[:total_score]
-    @guess = params[:guess].upcase
-    @letters = params[:letters].chars
-    @response = if !letter_test(@guess, @letters)
-                  "Sorry but #{@guess} can't be built out of #{@letters.to_sentence}"
-                elsif !api_test(@guess)
-                  "Sorry but #{@guess} does not seem to be a valid English word..."
+    guess = params[:guess].upcase
+    letters = params[:letters].chars
+    @response = if !letter_test(guess, letters)
+                  "Sorry but #{guess} can't be built out of #{letters.to_sentence}"
+                elsif !api_test(guess)
+                  "Sorry but #{guess} does not seem to be a valid English word..."
                 else
-                  @score = @guess.length**2
+                  @score = guess.length**2
                   cookies[:total_score] = cookies[:total_score].to_i + @score
-                  "Congradulations #{@guess} is a valid English word! You scored #{@score}"
+                  "Congradulations #{guess} is a valid English word! You scored #{@score}"
                 end
     @total_score = cookies[:total_score]
   end
