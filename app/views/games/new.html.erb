@@ -10,7 +10,7 @@
 <label for="guess">What is the longest word you can find?</label>
   <div class="container-flex">
     <input class="input" id="guess" type="text" name="guess">
-    <input class="btn" type="submit" value="Play">
+    <input class="btn" type="submit" value="Play" id="play">
     <input type="hidden" name="letters" value="<%= @letters.join %>">
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   </div>
